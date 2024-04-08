@@ -9,7 +9,7 @@
 // 	Products,
 // 	Settings,
 // } from '@pages'
-// import { PrivateRoutes } from '@router'
+// import { PrivateRoutes } from '../PrivateRoutes'
 // import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 
 export const Router = () => {
