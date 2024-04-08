@@ -3,7 +3,6 @@
 		"baseUrl": "./src",
 		"paths": {
 			"@components/*": ["components/*"],
-			"@layouts/*": ["layouts/*"],
 			"@pages/*": ["pages/*"]
 		},
 		"target": "ES2020",
