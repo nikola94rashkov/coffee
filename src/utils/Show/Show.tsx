@@ -5,7 +5,7 @@ import {
 	type ShowWhenProps,
 	type ShowElseProps,
 	type TShow,
-} from './types'
+} from '@src/types'
 
 export const Show: FC<ShowProps> = ({ children }) => {
 	let when: TShow = null
