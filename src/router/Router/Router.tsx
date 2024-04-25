@@ -1,5 +1,5 @@
 import { PrivateRoutes } from '../PrivateRoutes'
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import { Suspense, lazy } from 'react'
 
 const Cart = lazy(() =>
@@ -37,50 +37,48 @@ const Register = lazy(() =>
 )
 
 export const Router = () => {
-	const router = createBrowserRouter([
-		{
-			path: '/',
-			element: <Home />,
-		},
-		{
-			element: <PrivateRoutes condition={true} />,
-			children: [
-				{
-					path: '/login',
-					element: <Login />,
-				},
-				{
-					path: '/register',
-					element: <Register />,
-				},
-			],
-		},
-		{
-			path: '/cart',
-			element: <Cart />,
-		},
-		{
-			path: '/product/:productId',
-			element: <Product />,
-		},
-		{
-			element: <PrivateRoutes condition={true} />,
-			children: [
-				{
-					path: '/dashboard',
-					element: <Dashboard />,
-				},
-			],
-		},
-		{
-			path: '*',
-			element: <NotFound />,
-		},
-	])
-
 	return (
 		<Suspense fallback={<h2>loading</h2>}>
-			<RouterProvider router={router} />
+			<Routes>
+				<Route
+					path='/'
+					element={<Home />}
+				/>
+				<Route
+					path='/cart'
+					element={<Cart />}
+				/>
+				<Route
+					path='/product/:productId'
+					element={<Product />}
+				/>
+				<Route
+					element={
+						<PrivateRoutes
+							condition={true}
+							navigate='/'
+						/>
+					}>
+					<Route
+						path='/login'
+						element={<Login />}
+					/>
+					<Route
+						path='/register'
+						element={<Register />}
+					/>
+				</Route>
+				<Route element={<PrivateRoutes condition={true} />}>
+					<Route
+						path='/dashboard'
+						element={<Dashboard />}
+					/>
+				</Route>
+				<Route
+					path='*'
+					element={<NotFound />}
+				/>
+			</Routes>
 		</Suspense>
 	)
 }

@@ -1,6 +1,12 @@
 import { Navigate, Outlet } from 'react-router-dom'
-import { Boolean } from '@src/types'
+import { Boolean, String } from '@src/types'
 
-export const PrivateRoutes = ({ condition }: { condition: Boolean }) => {
-	return condition ? <Outlet /> : <Navigate to='/login' />
+export const PrivateRoutes = ({
+	condition,
+	navigate = '/login',
+}: {
+	condition: Boolean
+	navigate?: String
+}) => {
+	return condition ? <Outlet /> : <Navigate to={navigate} />
 }
